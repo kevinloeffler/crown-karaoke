@@ -1,3 +1,15 @@
+/* VIEW */
+const nowPlayingPlaceholder = document.querySelector('#now-playing-placeholder')
+const nowPlayingDiv = document.querySelector('#now-playing-div')
+const nowPlayingSongName = document.querySelector('#now-playing-song-name')
+const nowPlayingArtist = document.querySelector('#now-playing-artist')
+const nowPlayingSinger = document.querySelector('#now-playing-singer')
+
+const queueWrapper = document.querySelector('#queue-wrapper')
+const waitTimeIndicator = document.querySelector('#wait-time')
+
+/* CONNECTION */
+
 const wsConnection = new WebSocket('ws://localhost:3000/echo', )
 
 wsConnection.onopen = function(rawMsg) {
@@ -31,9 +43,8 @@ wsConnection.onmessage = function(rawMsg) {
     // const timeStr = time.toLocaleTimeString()
 }
 
-function sendWS(content) {
+function sendSongRequest(request) {
+    // ToDo: Send song request
     wsConnection.send({})
 }
-
-window.setTimeout()
 
