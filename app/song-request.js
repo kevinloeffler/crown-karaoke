@@ -1,3 +1,5 @@
+WS_URL = 'ws://localhost:3000/echo'
+
 /* VIEW */
 
 const titleInput = document.querySelector('#title-input')
@@ -60,9 +62,11 @@ function handleButtonClick() {
         const request = {
             type: 'request-song',
             id: requestID,
-            title: songRequest.title,
-            artist: songRequest.artist,
-            singer: songRequest.singer,
+            data: {
+                title: songRequest.title,
+                artist: songRequest.artist,
+                singer: songRequest.singer,
+            }
         }
         sendSongRequest(request)
     } else {
@@ -72,7 +76,7 @@ function handleButtonClick() {
 
 /* CONNECTION */
 
-const wsConnection = new WebSocket('ws://localhost:3000/echo', )
+const wsConnection = new WebSocket(WS_URL)
 wsConnection.addEventListener('message', handleWebsocketMessages)
 
 function sendSongRequest(request) {
