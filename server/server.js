@@ -1,35 +1,23 @@
-import express, {raw} from 'express'
+import express from 'express'
 import http from 'http'
-import ws, {WebSocketServer} from 'ws'
-
+import {WebSocketServer} from 'ws'
+import {handleRequests} from './handle-requests.js'
 
 const app = express()
 app.use(express.static('app'))
 const port = process.env.PORT || 3000
 
-
 const server = http.createServer(app)
 const wss = new WebSocketServer({server, path: '/echo'})
 
 wss.on('connection', (ws) => {
-    const welcomeMessage = JSON.stringify({type: 'hello'})
-    ws.send(welcomeMessage)
+    handleRequests['hello'](ws)
 
     ws.on('message', (rawMsg) => {
         try {
             const msg = JSON.parse(rawMsg)
-            // console.log(msg)
-
-            switch (msg.type) {
-                case 'request':
-                    switch (msg.data) {
-                        case 'update':
-                            const response = JSON.stringify({type: 'update', body: '...'})
-                            ws.send(response)
-                            break
-                    }
-                    break
-            }
+            console.log('received:', msg)
+            handleRequests[msg.type](ws, msg)
 
         } catch (err) {
             if (err instanceof SyntaxError) {
