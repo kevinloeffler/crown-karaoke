@@ -13,11 +13,12 @@ const wss = new WebSocketServer({server, path: '/echo'})
 wss.on('connection', (ws) => {
     handleRequests['hello'](ws)
 
-    ws.on('message', (rawMsg) => {
+    ws.on('message', async (rawMsg) => {
         try {
             const msg = JSON.parse(rawMsg)
             console.log('received:', msg)
-            handleRequests[msg.type](ws, msg)
+
+            await handleRequests[msg.type](ws, msg)
 
         } catch (err) {
             if (err instanceof SyntaxError) {
