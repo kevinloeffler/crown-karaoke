@@ -1,3 +1,4 @@
+import {addSong} from './database-manager.js'
 
 export const handleRequests = {
     'hello': sendWelcomeMessage,
@@ -21,14 +22,23 @@ function sendDataUpdate(websocket, request) {
     websocket.send(updateMsg)
 }
 
-function sendSongConfirmation(websocket, request) {
+async function sendSongConfirmation(websocket, request) {
+    let confirmationMsg
+    try {
+        await addSong(request.id, request.data.title, request.data.artist, request.data.singer)
+        confirmationMsg = JSON.stringify({
+            type: 'song-confirmation',
+            status: true,
+            id: request.id,
+        })
+    } catch (err) {
+        console.log(err)
 
-    // ToDo: store song in db
-
-    const confirmationMsg = JSON.stringify({
-        type: 'song-confirmation',
-        status: true,
-        id: request.id,
-    })
+        confirmationMsg = JSON.stringify({
+            type: 'song-confirmation',
+            status: false,
+            id: request.id,
+        })
+    }
     websocket.send(confirmationMsg)
 }
