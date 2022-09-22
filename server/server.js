@@ -49,14 +49,16 @@ function broadcast(content) {
     console.log('run timeout')
 }
 
-setTimeout(broadcast, 5000, 'Hello everyone')
+// setTimeout(broadcast, 5000, 'Hello everyone')
 
 
 app.get('/', function (req, res) {
     res.sendFile('home.html', {root: 'app'})
 })
 
-
+app.get('/song-request', function (req, res) {
+    res.sendFile('song-request.html', {root: 'app'})
+})
 
 
 server.listen(port, () => {
