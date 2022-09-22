@@ -1,4 +1,7 @@
+WS_URL = 'ws://localhost:3000/echo'
+
 /* VIEW */
+
 const nowPlayingPlaceholder = document.querySelector('#now-playing-placeholder')
 const nowPlayingDiv = document.querySelector('#now-playing-div')
 const nowPlayingSongName = document.querySelector('#now-playing-song-name')
@@ -8,9 +11,24 @@ const nowPlayingSinger = document.querySelector('#now-playing-singer')
 const queueWrapper = document.querySelector('#queue-wrapper')
 const waitTimeIndicator = document.querySelector('#wait-time')
 
+/* MODEL */
+
+const handleMessage = {
+    'hello': handleHelloMsg,
+    'broadcast': handleBroadcastMsg,
+}
+
+function handleHelloMsg(msg) {
+    console.log(`Hello message received at ${msg.data}`)
+}
+
+function handleBroadastMsg(msg) {
+    
+}
+
 /* CONNECTION */
 
-const wsConnection = new WebSocket('ws://localhost:3000/echo', )
+const wsConnection = new WebSocket(WS_URL)
 
 wsConnection.onopen = function(rawMsg) {
     console.log('ws connection opened')
