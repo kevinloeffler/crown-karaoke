@@ -14,7 +14,6 @@ const wsConnection = new WebSocket('ws://localhost:3000/echo', )
 
 wsConnection.onopen = function(rawMsg) {
     console.log('ws connection opened')
-    wsConnection.send(JSON.stringify({type: 'hello'}))
 }
 
 wsConnection.onmessage = function(rawMsg) {
@@ -25,7 +24,7 @@ wsConnection.onmessage = function(rawMsg) {
         switch (msg.type) {
             case 'hello':
                 console.log('received hello message')
-                const response = {type: 'request', data: 'update'}
+                const response = {type: 'request-update', data: 'update request'}
                 wsConnection.send(JSON.stringify(response))
                 break
             case 'update':
