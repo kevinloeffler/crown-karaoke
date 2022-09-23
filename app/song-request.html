@@ -5,32 +5,60 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>Song Wunsch</title>
+    <link rel="stylesheet" href="resources/styles.css">
     <script src="song-request.js" defer></script>
 </head>
 <body>
 
-<a href="/">< Zurück zur Übersicht</a>
-<h1>Songwunsch</h1>
+<div class="page-container">
 
-<label for="title-input">Titel:</label>
-<input id="title-input" type="text" required>
+    <p class="subtitle">
+        <a class="request-link" href="/">< Zurück zur Übersicht</a>
+    </p>
+    <h1 class="request-title">Songwunsch</h1>
 
-<label for="artist-input">Artist:</label>
-<input id="artist-input" type="text" required>
+    <label for="title-input" class="labels">Titel:</label>
+    <input id="title-input" type="text" class="request-input" required>
 
-<label for="singer-input">Dein (Künstler) Name - Optional</label>
-<input id="singer-input" type="text">
+    <label for="artist-input" class="labels">Artist:</label>
+    <input id="artist-input" type="text" class="request-input" required>
 
-<p>Dein Songwunsch wird in Kürze in der Warteliste erscheinen. Bitte halte dich bereit. Längere Wartezeit? Besuch unsere Cocktailbar beim Gebäude 1.</p>
+    <label for="singer-input" class="labels">Dein (Künstler) Name - Optional</label>
+    <input id="singer-input" type="text" class="request-input">
 
-<a href="https://instagram.com/thecrownbarrappi"></a>
-<button id="confirm-song-button">Song bestätigen</button>
+    <p class="request-explain-text">Dein Songwunsch wird der Warteliste hinzugefügt. Bitte halte dich bereit. Längere Wartezeit? Besuch
+        unsere Cocktailbar beim Gebäude 1.</p>
 
-<div id="overlay">
-    <p>Dein Song <span id="overlay-title">...</span> von <span id="overlay-artist">...</span> wurde der Warteschlange hinzugefügt.</p>
-    <p>Lust auf mehr Karaoke? Folge uns auf Instagram und verpasse nie ein Event:</p>
-    <a href="https://instagram.com/thecrownbarrappi">Instagram</a>
+    <a href="https://instagram.com/thecrownbarrappi"></a>
+    <button id="confirm-song-button" class="main-button">Song bestätigen</button>
+
 </div>
+
+<div id="overlay" class="hidden">
+    <div class="page-container request-overlay-container">
+
+        <p class="subtitle">
+            <a class="request-link" href="/">< Zurück zur Übersicht</a>
+        </p>
+
+        <p class="request-success-text">Let’s go! Dein Song <span id="overlay-title">...</span> von <span
+            id="overlay-artist">...</span> wurde der
+        Warteschlange hinzugefügt.
+            <br>
+            <br>
+            Lust auf mehr Karaoke oder Cocktails? Folge uns auf Instagram und verpasse nie ein Event in der Crown Bar.</p>
+
+        <div class="request-button-wrapper">
+            <p class="request-powered-by">Powered by</p>
+            <p class="request-powered-crown-bar">The Crown Bar</p>
+
+            <button class="main-button secondary-button" onclick="window.location.href='https://thecrownbar.ch'">Website</button>
+            <button class="main-button" onclick="window.location.href='https://instagram.com/thecrownbarrappi'">Instagram</button>
+        </div>
+
+    </div>
+</div>
+
 
 </body>
 </html>

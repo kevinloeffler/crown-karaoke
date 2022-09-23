@@ -17,18 +17,36 @@ const queueWrapper = document.querySelector('#queue-wrapper')
 const waitTimeIndicator = document.querySelector('#wait-time')
 
 function renderSongs(songs) {
-    let fragment = ''
+    if (songs.length === 0) {
+        nowPlayingDiv.classList.add('hidden')
+        nowPlayingPlaceholder.classList.remove('hidden')
+    } else {
+        // Visibility
+        nowPlayingDiv.classList.remove('hidden')
+        nowPlayingPlaceholder.classList.add('hidden')
 
-    for (const song of songs) {
-        console.log(song)
-        fragment += `<div class="song-wrapper"><p>${song.song_name}</p><p>${song.artist_name}</p></div>`
+        // Now playing song
+        const nowPlayingSong = songs.shift()
+        nowPlayingSongName.textContent = nowPlayingSong.song_name
+        nowPlayingArtist.textContent = nowPlayingSong.artist_name
+        nowPlayingSinger.textContent = nowPlayingSong.singer_name
+
+        // Queue
+        let fragment = ''
+        for (const song of songs) {
+            fragment += `<div class="song-wrapper"><p class="song-title">${song.song_name}</p><p>${song.artist_name} - ${song.singer_name}</p></div>`
+        }
+        queueWrapper.innerHTML = fragment
     }
-    console.log(fragment)
-    queueWrapper.innerHTML = fragment
 }
 
 function renderWaitTime(songs_count) {
     waitTimeIndicator.textContent = `~ ${songs_count * 3} Min Wartezeit`
+}
+
+function renderUI(songs, songs_count) {
+    renderSongs(songs)
+    renderWaitTime(songs_count)
 }
 
 /* MODEL */
@@ -40,12 +58,13 @@ const handleMessage = {
 
 function handleHelloMsg(msg) {
     console.log(`Hello message received at ${msg.data}`)
+    const requestUpdate = JSON.stringify({type: 'request-update', date: 'update request'})
+    wsConnection.send(requestUpdate)
 }
 
 function handleUpdateMsg(msg) {
     console.log('Update received')
-    renderSongs(msg.data)
-    renderWaitTime(msg.data.length)
+    renderUI(msg.data, msg.data.length)
 }
 
 /* CONNECTION */

@@ -19,6 +19,7 @@ const confirmSongButton = document.querySelector('#confirm-song-button')
 confirmSongButton.addEventListener('click', handleButtonClick)
 
 function renderOverlay(status) {
+    overlay.classList.remove('hidden')
     if (status) {
         overlayTitle.textContent = songRequest.title
         overlayArtist.textContent = songRequest.artist
@@ -40,6 +41,7 @@ const songRequest = {
 const handleMessage = {
     'hello': handleHelloMsg,
     'song-confirmation': handleSongConfirmationMsg,
+    'update': handleUpdateMsg,
 }
 
 function handleHelloMsg(msg) {
@@ -52,6 +54,8 @@ function handleSongConfirmationMsg(msg) {
         renderOverlay(msg.status)
     }
 }
+
+function handleUpdateMsg(msg) {}
 
 /* LOGIC */
 

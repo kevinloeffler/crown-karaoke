@@ -1,0 +1,256 @@
+/* TYPOGRAPHY */
+
+@font-face {
+    font-family: "Tiempos Fine";
+    src: url("./TiemposFine-Black.otf") format('opentype');
+}
+
+@font-face {
+    font-family: "Helvetica Now";
+    font-weight: 500;
+    src: url("./HelveticaNowDisplay-Medium.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: "Helvetica Now";
+    font-weight: 600;
+    src: url("./HelveticaNowDisplay-Bold.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: "Helvetica Now";
+    font-weight: 700;
+    src: url("./HelveticaNowDisplay-ExtraBold.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: "Helvetica Now";
+    font-weight: 800;
+    src: url("./HelveticaNowDisplay-Black.ttf") format('truetype');
+}
+
+/* GLOBAL STYLES */
+
+:root {
+    --background-color: #121212;
+    --background-raised-color: #303030;
+    --text-color: #fff;
+    --text-secondary-color: #BFBFBF;
+    --accent-color: #EEC369;
+}
+
+/* REMOVE DEFAULT STYLES */
+
+:link, :visited {
+    text-decoration: none;
+}
+ul, ol {
+    list-style: none;
+}
+h1, h2, h3, h4, h5, h6, pre, code, p {
+    font-size: 1em;
+}
+ul, ol, dl, li, dt, dd, h1, h2, h3, h4, h5, h6, pre,
+form, body, html, p, blockquote, fieldset, input {
+    padding: 0;
+    margin: 0;
+}
+a img, :link img, :visited img {
+    border: none;
+}
+address {
+    font-style: normal;
+}
+input:focus {
+    outline: none;
+}
+
+/* GENERAL STYLES */
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: "Helvetica Now", "Helvetica", sans-serif;
+    font-weight: 500;
+}
+
+h1 {
+    font-family: "Tiempos Fine", serif;
+}
+
+.hidden {
+    display: none!important;
+}
+
+.page-container {
+    position: relative;
+    width: 80vw;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.song-wrapper {
+    background-color: var(--background-raised-color);
+    padding: 20px;
+    margin: 8px 0;
+    border-radius: 8px;
+}
+
+.song-title {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+#now-playing-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80px;
+    background-color: var(--background-raised-color);
+    color: var(--text-secondary-color);
+    margin: 8px 0;
+    border-radius: 8px;
+}
+
+.bottom-bar {
+    position: fixed;
+    bottom: 0;
+    width: 80%;
+    max-width: 400px;
+    padding-top: 8px;
+    padding-bottom: 20px;
+    background-color: var(--background-color);
+    box-shadow: 0 -5px 25px 20px var(--background-color);
+    border-top: solid 1px var(--text-secondary-color);
+}
+
+.main-button {
+    font-size: 1.2em;
+    font-weight: 800;
+
+    color: var(--background-color);
+    background-color: var(--accent-color);
+
+    min-height: 60px;
+    width: 100%;
+    border-radius: 8px;
+
+    border: none;
+    outline: none;
+}
+
+.secondary-button {
+    color: var(--text-color);
+    background-color: var(--background-raised-color);
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    font-size: 0.8em;
+    margin-top: 32px;
+}
+
+.labels {
+    /*font-size: 0.8em;*/
+    color: var(--text-secondary-color);
+}
+
+/* Home */
+
+.home-title {
+    font-size: 4em;
+}
+
+#now-playing-wrapper {
+    position: sticky;
+    top: 8px;
+    background-color: var(--background-color);
+    box-shadow: 0 0 15px 5px var(--background-color);
+}
+
+#wait-time {
+    color: var(--text-secondary-color);
+    text-align: center;
+    margin: 8px 0;
+}
+
+#queue-wrapper {
+    padding-bottom: 300px;
+}
+
+/* Request */
+
+.request-title {
+    font-size: 2.8em;
+}
+
+.request-link {
+    color: var(--text-color);
+}
+
+.request-input {
+    display: block;
+    min-height: 60px;
+    max-width: 100%;
+    margin-top: 4px;
+    margin-bottom: 12px;
+    padding: 0 20px;
+
+    color: var(--text-color);
+    background-color: var(--background-raised-color);
+
+    font-size: 20px;
+    font-weight: 600;
+
+    border-radius: 8px;
+    border: none;
+    outline: none;
+}
+
+.request-explain-text {
+    color: var(--text-secondary-color);
+    font-size: 0.8em;
+}
+
+#confirm-song-button {
+    position: fixed;
+    bottom: 20px;
+    width: 80vw;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--background-color);
+}
+
+.request-overlay-container {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.request-success-text {
+    height: 100%;
+}
+
+.request-powered-by {
+    font-size: 0.6em;
+    text-align: center;
+}
+
+.request-powered-crown-bar {
+    font-family: "Tiempos Fine", serif;
+    font-size: 1.6em;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.request-button-wrapper {
+    margin-bottom: 20px;
+}

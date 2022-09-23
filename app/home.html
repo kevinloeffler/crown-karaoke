@@ -4,34 +4,39 @@
     <meta charset="UTF-8">
     <title>Crown Bar Karaoke</title>
     <script src="home.js" defer></script>
-
+    <link rel="stylesheet" href="resources/styles.css">
 </head>
 <body>
 
-<p>Crown Bar x Rattenfest</p>
-<h1>Karaoke</h1>
+<div class="page-container">
 
-<div id="now-playing-wrapper">
-    <p>Now playing:</p>
-    <div id="now-playing-placeholder">Nichts in der Warteschlange</div>
-    <div id="now-playing-div">
-        <div class="now-playing-icon"><!--ToDo: add image--></div>
-        <p id="now-playing-song-name">Song Title</p>
-        <p id="now-playing-artist">Artist</p>
-        <p id="now-playing-singer">Singer</p>
+    <p class="subtitle">Crown Bar x Rattenfest</p>
+    <h1 class="home-title">Karaoke</h1>
+
+    <div id="now-playing-wrapper">
+        <p class="labels">Now playing:</p>
+        <div id="now-playing-placeholder">Nichts in der Warteschlange</div>
+        <div id="now-playing-div" class="song-wrapper">
+            <div class="now-playing-icon"><!--ToDo: add image--></div>
+            <p id="now-playing-song-name" class="song-title">Song Title</p>
+            <div class="song-line-wrapper">
+                <p><span id="now-playing-artist"></span> - <span id="now-playing-singer"></span></p>
+            </div>
+        </div>
     </div>
-</div>
 
-<div>
-    <p>Queue:</p>
-    <div id="queue-wrapper">
-        <!-- Dynamically filled -->
+    <div>
+        <p class="labels">Queue:</p>
+        <div id="queue-wrapper">
+            <!-- Dynamically filled -->
+        </div>
     </div>
-</div>
 
-<div id="bottom-bar">
-    <p id="wait-time">-</p>
-    <button onclick="window.location.href='/song-request'">Song wünschen</button>
+    <div class="bottom-bar">
+        <p id="wait-time">-</p>
+        <button class="main-button" onclick="window.location.href='/song-request'">Song wünschen</button>
+    </div>
+
 </div>
 
 </body>
