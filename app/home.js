@@ -2,7 +2,7 @@ let WS_URL
 if (window.location.href === 'http://localhost:3000/') {
     WS_URL = 'ws://localhost:3000/echo'
 } else {
-    WS_URL = 'ws://crown-karaoke.herokuapp.com/echo'
+    WS_URL = 'wss://crown-karaoke.herokuapp.com/echo'
 }
 
 /* VIEW */
