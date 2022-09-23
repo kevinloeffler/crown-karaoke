@@ -14,11 +14,11 @@ function sendWelcomeMessage(websocket, request) {
 
 async function sendDataUpdate(websocket, request) {
 
-    // ToDo: get songs from db
+    const queue = await getQueue()
 
     const updateMsg = JSON.stringify({
         type: 'update',
-        data: {songs: 'test'},
+        data: queue,
     })
     websocket.send(updateMsg)
 }
@@ -33,7 +33,7 @@ async function sendBroadcast() {
     })
 }
 
-setTimeout(sendBroadcast, 2000, 'Hello everyone')
+// setTimeout(sendBroadcast, 2000)
 
 
 async function sendSongConfirmation(websocket, request) {
