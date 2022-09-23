@@ -1,4 +1,5 @@
-import {addSong} from './database-manager.js'
+import {addSong, getQueue} from './database-manager.js'
+import {wss} from './server.js'
 
 export const handleRequests = {
     'hello': sendWelcomeMessage,
@@ -11,7 +12,7 @@ function sendWelcomeMessage(websocket, request) {
     websocket.send(welcomeMsg)
 }
 
-function sendDataUpdate(websocket, request) {
+async function sendDataUpdate(websocket, request) {
 
     // ToDo: get songs from db
 
@@ -21,6 +22,19 @@ function sendDataUpdate(websocket, request) {
     })
     websocket.send(updateMsg)
 }
+
+async function sendBroadcast() {
+
+    const queue = await getQueue()
+
+    wss.clients.forEach(client => {
+        const message = JSON.stringify({type: 'update', data: queue})
+        client.send(message)
+    })
+}
+
+setTimeout(sendBroadcast, 2000, 'Hello everyone')
+
 
 async function sendSongConfirmation(websocket, request) {
     let confirmationMsg
@@ -41,4 +55,5 @@ async function sendSongConfirmation(websocket, request) {
         })
     }
     websocket.send(confirmationMsg)
+    await sendBroadcast()
 }

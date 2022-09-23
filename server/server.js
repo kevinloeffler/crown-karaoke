@@ -8,7 +8,7 @@ app.use(express.static('app'))
 const port = process.env.PORT || 3000
 
 const server = http.createServer(app)
-const wss = new WebSocketServer({server, path: '/echo'})
+export const wss = new WebSocketServer({server, path: '/echo'})
 
 wss.on('connection', (ws) => {
     handleRequests['hello'](ws)
@@ -30,15 +30,6 @@ wss.on('connection', (ws) => {
     })
 });
 
-function broadcast(content) {
-    wss.clients.forEach(client => {
-        const message = JSON.stringify({type: 'update', data: content})
-        client.send(message)
-    })
-    console.log('run timeout')
-}
-
-// setTimeout(broadcast, 5000, 'Hello everyone')
 
 
 app.get('/', function (req, res) {
