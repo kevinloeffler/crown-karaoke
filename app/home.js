@@ -1,4 +1,12 @@
-WS_URL = 'ws://localhost:3000/echo'
+let WS_URL
+console.log('cur:', window.location.href)
+if (window.location.href === 'http://localhost:3000/') {
+    WS_URL = 'ws://localhost:3000/echo'
+} else {
+    WS_URL = 'ws://crown-karaoke.herokuapp.com/echo'
+}
+
+console.log('WS URL:', WS_URL)
 
 /* VIEW */
 
