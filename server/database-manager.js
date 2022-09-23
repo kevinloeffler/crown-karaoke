@@ -14,7 +14,7 @@ pool.connect()
 /* QUERIES */
 
 async function getQueue(limit = 33) {
-    const query = "SELECT * FROM songs WHERE played = false AND deleted = false LIMIT $1 "
+    const query = "SELECT song_id, song_name, artist_name, singer_name, ts FROM songs WHERE played = false AND deleted = false ORDER BY ts LIMIT $1"
     const values = [limit]
 
     try {
