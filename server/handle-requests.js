@@ -1,10 +1,13 @@
-import {addSong, getQueue} from './database-manager.js'
+import {addSong, deleteSong, getQueue, hideSinger, markSongAsPlayed} from './database-manager.js'
 import {wss} from './server.js'
 
 export const handleRequests = {
     'hello': sendWelcomeMessage,
     'request-update': sendDataUpdate,
     'request-song': sendSongConfirmation,
+    'mark-played': markPlayed,
+    'hide-singer': hide,
+    'delete-song': deleteSongHere,
 }
 
 function sendWelcomeMessage(websocket, request) {
@@ -31,6 +34,21 @@ async function sendBroadcast() {
         const message = JSON.stringify({type: 'update', data: queue})
         client.send(message)
     })
+}
+
+async function markPlayed(ws, msg) {
+    await markSongAsPlayed(msg.id)
+    await sendBroadcast()
+}
+
+async function hide(ws, msg) {
+    await hideSinger(msg.id)
+    await sendBroadcast()
+}
+
+async function deleteSongHere(ws, msg) {
+    await deleteSong(msg.id)
+    await sendBroadcast()
 }
 
 // setTimeout(sendBroadcast, 2000)

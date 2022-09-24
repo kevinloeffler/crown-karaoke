@@ -40,6 +40,9 @@ app.get('/song-request', function (req, res) {
     res.sendFile('song-request.html', {root: 'app'})
 })
 
+app.get('/dashboard', function (req, res) {
+    res.sendFile('dashboard.html', {root: 'app'})
+})
 
 server.listen(port, () => {
     console.log(`Server started on port ${server.address().port}`);

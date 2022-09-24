@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Song Wunsch</title>
+    <link rel="stylesheet" href="resources/styles.css">
+    <script src="dashboard.js" defer></script>
+</head>
+<body>
+
+<div class="page-container dashboard-container">
+
+    <h1 class="dashboard-title">Dashboard</h1>
+
+    <div id="now-playing-wrapper">
+        <p class="labels">Now playing:</p>
+        <div id="now-playing-placeholder">Nichts in der Warteschlange</div>
+        <div id="now-playing-div" class="song-wrapper now-playing-dashboard hidden">
+            <div>
+                <div class="now-playing-icon"><!--ToDo: add image--></div>
+                <p id="now-playing-song-name" class="song-title">Song Title</p>
+                <div class="song-line-wrapper">
+                    <p><span id="now-playing-artist"></span> - <span id="now-playing-singer"></span></p>
+                </div>
+
+            </div>
+
+            <div class="dashboard-next-button" onclick="handlePlayedClick(0)">
+                Next Song
+            </div>
+
+        </div>
+    </div>
+
+
+    <div>
+        Now playing:
+    </div>
+
+    <div>
+        <p class="labels">Queue:</p>
+        <div id="queue-wrapper">
+            <!-- Dynamically filled -->
+        </div>
+    </div>
+
+</div>
+
+</body>

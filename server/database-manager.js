@@ -38,7 +38,42 @@ async function addSong(id, title, artist, singer, visible = true) {
     }
 }
 
+async function markSongAsPlayed(id) {
+    const query = 'UPDATE songs SET played = true WHERE song_id = $1'
+    const values = [id]
+
+    try {
+        const res = await pool.query(query, values)
+        return res.rows
+    } catch (err) {
+        console.log('DB ERROR:', err)
+    }
+}
+
+async function deleteSong(id) {
+    const query = 'UPDATE songs SET deleted = true WHERE song_id = $1'
+    const values = [id]
+
+    try {
+        const res = await pool.query(query, values)
+        return res.rows
+    } catch (err) {
+        console.log('DB ERROR:', err)
+    }
+}
+
+async function hideSinger(id) {
+    console.log('id:', id)
+    const query = 'UPDATE songs SET visible = false WHERE song_id = $1'
+    const values = [id]
+
+    try {
+        const res = await pool.query(query, values)
+        return res.rows
+    } catch (err) {
+        console.log('DB ERROR:', err)
+    }
+}
 
 
-
-export {getQueue, addSong}
+export {getQueue, addSong, markSongAsPlayed, deleteSong, hideSinger}
